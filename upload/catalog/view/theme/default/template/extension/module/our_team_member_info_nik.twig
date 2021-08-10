@@ -1,0 +1,46 @@
+{{ header }}
+<div id="our-team-nik" class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="row">{{ column_left }}
+        {% if column_left and column_right %}
+            {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+            {% set class = 'col-sm-9' %}
+        {% else %}
+            {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">
+            {{ content_top }}
+
+            <div class="member-content">
+
+                <img src="{{ member.thumb }}" alt="{{ member.fio }}">
+
+                <h2><b>{{ member.fio }}</b></h2>
+                <h4>{{ member.position }}</h4>
+                <br>
+                <br>
+                <span><b>{{ text_telephone }}</b></span>
+                <p>{{ member.telephone }}</p>
+                <span><b>{{ text_email }}</b></span>
+                <p>{{ member.email }}</p>
+                <br>
+                <br>
+                <span><b>{{ text_about_me }}</b></span>
+                <p>{{ member.about_me }}</p>
+                <span><b>{{ text_commentary }}</b></span>
+                <p>{{ member.commentary }}</p>
+
+            </div>
+
+            {{ content_bottom }}
+        </div>
+        {{ column_right }}
+    </div>
+</div>
+
+{{ footer }}

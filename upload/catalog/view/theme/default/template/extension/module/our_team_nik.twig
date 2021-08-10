@@ -1,0 +1,89 @@
+<style>
+  .our-team-member-main-card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+  }
+  .our-team-member-main-card-description {
+      display: flex;
+      flex-direction: column;
+      background-color: #F0F7FD;
+      width: 100%;
+      height: 400px;
+      justify-content: space-between;
+      padding: 25px;
+  }
+  .our-team-member-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  .our-team-member-card-description {
+      display: flex;
+      flex-direction: column;
+      background-color: #F0F7FD;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      padding: 25px;
+  }
+</style>
+
+<div class="row">
+  {% for member in members %}
+    {% if loop.index == '1' %}
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-sm-9">
+            <div class="our-team-member-main-card">
+              <img src="{{ member.thumb }}" alt="{{ member.fio }}">
+              <div class="our-team-member-main-card-description">
+                <p>
+                    <a href="{{ member.link }}">
+                        <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
+                    </a>
+                    <br>
+                    <span style="font-size: 12px; color: lightgray;">{{ member.position }}</span>
+                </p>
+                <p style="font-size: 14px; color: gray;">{{ member.commentary }}</p>
+              </div>
+            </div>
+          </div>
+    {% elseif loop.index == '2' %}
+            <div class="col-sm-3">
+                <div class="our-team-member-card" style="height: 400px;">
+                    <img src="{{ member.thumb }}" alt="{{ member.fio }}">
+                    <div class="our-team-member-card-description">
+                        <a href="{{ member.link }}">
+                            <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
+                        </a>
+                        <span style="font-size: 12px; color: lightgray;">{{ member.position }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+      {% if (loop.index - 3) % 4 == 0 %}
+        <div class="row" style="margin-bottom: 20px;">
+      {% endif %}
+      <div class="col-sm-3">
+          <div class="our-team-member-card">
+              <img src="{{ member.thumb }}" alt="{{ member.fio }}">
+              <div class="our-team-member-card-description">
+                  <a href="{{ member.link }}">
+                      <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
+                  </a>
+                  <span style="font-size: 12px; color: lightgray;">{{ member.position }}</span>
+              </div>
+          </div>
+      </div>
+      {% if (loop.index - 2 ) % 4 == 0 %}
+        </div>
+      {% endif %}
+
+      {% if loop.index == count_members %}
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>
