@@ -2,15 +2,14 @@
   .our-team-member-main-card {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
   }
   .our-team-member-main-card-description {
       display: flex;
       flex-direction: column;
       background-color: #F0F7FD;
-      width: 100%;
-      height: 400px;
+      width: 30%;
       justify-content: space-between;
       padding: 25px;
   }
@@ -28,30 +27,44 @@
       justify-content: space-between;
       padding: 25px;
   }
+  .our-team-member-second-card {
+    height: 360px;
+  }
+  @media (max-width: 1199px) {
+    .our-team-member-second-card {
+      height: 298px;
+    }
+  }
 </style>
 
 <div class="row">
   {% for member in members %}
     {% if loop.index == '1' %}
-        <div class="row" style="margin-bottom: 20px;">
+        <div class="row hidden-sm hidden-xs" style="margin-bottom: 20px;">
           <div class="col-sm-9">
-            <div class="our-team-member-main-card">
-              <img src="{{ member.thumb }}" alt="{{ member.fio }}">
-              <div class="our-team-member-main-card-description">
-                <p>
+
+            <div>
+              <div class="our-team-member-main-card">
+                <div style="max-width: 70%;">
+                  <img src="{{ member.thumb }}" alt="{{ member.fio }}" style="max-width: 100%;">
+                </div>
+                <div class="our-team-member-main-card-description">
+                  <p>
                     <a href="{{ member.link }}">
-                        <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
+                      <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
                     </a>
                     <br>
                     <span style="font-size: 12px; color: lightgray;">{{ member.position }}</span>
-                </p>
-                <p style="font-size: 14px; color: gray;">{{ member.commentary }}</p>
+                  </p>
+                  <p style="font-size: 14px; color: gray;">{{ member.commentary }}</p>
+                </div>
               </div>
             </div>
+
           </div>
     {% elseif loop.index == '2' %}
             <div class="col-sm-3">
-                <div class="our-team-member-card" style="height: 400px;">
+                <div class="our-team-member-card our-team-member-second-card">
                     <img src="{{ member.thumb }}" alt="{{ member.fio }}">
                     <div class="our-team-member-card-description">
                         <a href="{{ member.link }}">
@@ -64,7 +77,7 @@
         </div>
     {% else %}
       {% if (loop.index - 3) % 4 == 0 %}
-        <div class="row" style="margin-bottom: 20px;">
+        <div class="row hidden-sm hidden-xs" style="margin-bottom: 20px;">
       {% endif %}
       <div class="col-sm-3">
           <div class="our-team-member-card">
@@ -86,4 +99,19 @@
       {% endif %}
     {% endif %}
   {% endfor %}
+
+  {% for member in members %}
+    <div class="col-sm-6 col-xs-12 visible-sm visible-xs" style="margin-bottom: 20px;">
+      <div class="our-team-member-card">
+        <img src="{{ member.thumb }}" alt="{{ member.fio }}">
+        <div class="our-team-member-card-description">
+          <a href="{{ member.link }}">
+            <span style="font-size: 22px; font-weight: bolder; color: black; text-transform: none;">{{ member.fio }}</span>
+          </a>
+          <span style="font-size: 12px; color: lightgray;">{{ member.position }}</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
 </div>

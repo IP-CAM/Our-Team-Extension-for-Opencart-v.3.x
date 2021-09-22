@@ -22,19 +22,12 @@ class ControllerExtensionModuleOurTeamNik extends Controller {
 
             $data['members'][$key]['link'] = $this->url->link('extension/module/our_team_nik', 'member_id=' . $member['member_id']);
 
-            if ($key == 0) {
-                if ($member['image']) {
-                    $data['members'][$key]['thumb'] = $this->model_tool_image->resize($member['image'], 676, 400);
-                } else {
-                    $data['members'][$key]['thumb'] = '';
-                }
+            if ($member['image']) {
+                $data['members'][$key]['thumb'] = $this->model_tool_image->resize($member['image'], 676, 400);
             } else {
-                if ($member['image']) {
-                    $data['members'][$key]['thumb'] = $this->model_tool_image->resize($member['image'], 325, 237);
-                } else {
-                    $data['members'][$key]['thumb'] = '';
-                }
+                $data['members'][$key]['thumb'] = $this->model_tool_image->resize('no_image.png', 676, 400);
             }
+
         }
 
 		return $this->load->view('extension/module/our_team_nik', $data);
@@ -62,7 +55,7 @@ class ControllerExtensionModuleOurTeamNik extends Controller {
         if ($member['image']) {
             $member['thumb'] = $this->model_tool_image->resize($member['image'], 676, 400);
         } else {
-            $member['thumb'] = '';
+            $member['thumb'] = $this->model_tool_image->resize('no_image.png', 676, 400);;
         }
 
         $data['member'] = $member;

@@ -9,6 +9,7 @@ $_['text_edit']        = 'Настройки модуля';
 $_['text_team_members']= 'Участники команды';
 $_['text_add_member']  = 'Добавление участника';
 $_['text_edit_member'] = 'Изменение участника';
+$_['text_image_resolution'] = 'Изображения должно быть разрешения 676х400!';
 
 // Entry
 $_['entry_telephone']  = 'Телефон';
